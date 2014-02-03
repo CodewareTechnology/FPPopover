@@ -60,6 +60,9 @@
 -(id)initWithViewController:(UIViewController*)viewController;
 -(id)initWithViewController:(UIViewController*)viewController
 				   delegate:(id<FPPopoverControllerDelegate>)delegate;
+-(id)initWithViewController:(UIViewController*)viewController
+                popoverView:(FPPopoverView *)popoverView
+				   delegate:(id<FPPopoverControllerDelegate>)delegate;
 
 /** @brief Presenting the popover from a specified view **/
 -(void)presentPopoverFromView:(UIView*)fromView;

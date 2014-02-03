@@ -103,7 +103,19 @@
 	return [self initWithViewController:viewController delegate:nil];
 }
 
+- (id)initWithViewController:(UIViewController *)viewController
+                    delegate:(id<FPPopoverControllerDelegate>)delegate
+{
+    FPPopoverView * popoverView =
+        [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0,
+            self.contentSize.width, self.contentSize.height)];
+    return [self initWithViewController:viewController
+                            popoverView:popoverView
+                               delegate:delegate];
+}
+
 -(id)initWithViewController:(UIViewController*)viewController
+                popoverView:(FPPopoverView *)popoverView
 				   delegate:(id<FPPopoverControllerDelegate>)delegate
 {
     self = [super init];
@@ -136,9 +148,8 @@
 
         self.contentSize = CGSizeMake(200, 300); //default size
 
-        _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
-                                              self.contentSize.width, self.contentSize.height)];
-        
+        _contentView = popoverView;
+    
         _viewController = SAFE_ARC_RETAIN(viewController);
         
         [_touchView addSubview:_contentView];
